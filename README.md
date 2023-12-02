@@ -1,6 +1,6 @@
 # PARTNER
 
-This is a reproduced repo of PARTNERfor Polar-based 3D object detection. 
+This is a reproduced repo of PARTNER for Polar-based 3D object detection. 
 
 The code is mainly based on [det3d](https://github.com/poodarchu/det3d) and [polarstream](https://github.com/motional/polarstream).
 
