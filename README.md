@@ -1,10 +1,14 @@
-# PARTNER
+# PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection
 
-This is a reproduced repo of PARTNER for Polar-based 3D object detection. 
+This is a reproduced repo of our work [PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection](https://arxiv.org/abs/2308.03982) for polar-based 3D object detection.
 
 The code is mainly based on [det3d](https://github.com/poodarchu/det3d) and [polarstream](https://github.com/motional/polarstream).
 
 ## Introduction
+![img|center](./img/pipeline.png)
+
+PARTNER alleviates the dilemma of feature distortion with global representation re-alignment and facilitates the regression by introducing instance-level geometric information into the detection head.
+
 We provide code and training configurations of PARTNER under ```configs```.  
 
 
@@ -61,3 +65,6 @@ For distributed testing with 8 gpus,
 ```bash
 python -m torch.distributed.launch --nproc_per_node=8 ./tools/dist_test.py CONFIG_PATH --work_dir work_dirs/CONFIG_NAME --checkpoint work_dirs/CONFIG_NAME/latest.pth 
 ```
+
+## Acknowledgements
+We thanks for the opensource codebases, [det3d](https://github.com/poodarchu/det3d) and [polarstream](https://github.com/motional/polarstream).
