@@ -70,7 +70,7 @@ For distributed testing with 8 gpus,
 python -m torch.distributed.launch --nproc_per_node=8 ./tools/dist_test.py CONFIG_PATH --work_dir work_dirs/CONFIG_NAME --checkpoint work_dirs/CONFIG_NAME/latest.pth 
 ```
 
-## Reference
+## BibTeX
 If you find our work useful in your research, please consider citing our paper:
 ```
 @inproceedings{nie2023partner,
