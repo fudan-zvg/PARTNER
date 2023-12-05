@@ -1,10 +1,11 @@
 # PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection
 
-> [**PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection**](https://arxiv.org/abs/),            
+> [**PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection**](https://arxiv.org/abs/2308.03982),            
 > Ming Nie, Yujing Xue, Chunwei Wang, Chaoqiang Ye, Hang Xu, Xinge Zhu, Qingqiu Huang, Michael Bi Mi, Xinchao Wang, [Li Zhang](https://lzrobots.github.io)  
 > **ICCV 2023**
 
-This is a official repo of ICCV 2023 paper [PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection](https://arxiv.org/abs/2308.03982) for polar-based 3D object detection.
+**This is a official implementation of ICCV 2023 paper [PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection](https://arxiv.org/abs/2308.03982) for polar-based 3D object detection.
+
 
 
 ## Introduction
