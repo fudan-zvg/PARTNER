@@ -70,5 +70,16 @@ For distributed testing with 8 gpus,
 python -m torch.distributed.launch --nproc_per_node=8 ./tools/dist_test.py CONFIG_PATH --work_dir work_dirs/CONFIG_NAME --checkpoint work_dirs/CONFIG_NAME/latest.pth 
 ```
 
+## Reference
+If you find our work useful in your research, please consider citing our paper:
+```
+@inproceedings{nie2023partner,
+  title={PARTNER: Level up the Polar Representation for LiDAR 3D Object Detection},
+  author={Nie, Ming and Xue, Yujing and Wang, Chunwei and Ye, Chaoqiang and Xu, Hang and Zhu, Xinge and Huang, Qingqiu and Mi, Michael Bi and Wang, Xinchao and Zhang, Li},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2023}
+}
+```
+
 ## Acknowledgements
 We thanks for the opensource codebases, [det3d](https://github.com/poodarchu/det3d) and [polarstream](https://github.com/motional/polarstream).
