@@ -58,9 +58,9 @@ class WindowAttention(nn.Module):
         self.rpe = nn.Sequential(nn.Conv2d(2, 16, kernal_size=1, stride=1, bias=True), 
                                  nn.ReLU(), 
                                  nn.Conv2d(16, num_heads, kernal_size=1, stride=1, bias=True))
-        self.vote_mlp = nn.Sequential(nn.Conv2d(3, 16, kernal_size=1, stride=1, bias=True), 
+        self.vote_mlp = nn.Sequential(nn.Conv1d(3, 16, kernal_size=1, stride=1, bias=True), 
                                  nn.ReLU(), 
-                                 nn.Conv2d(16, dim, kernal_size=1, stride=1, bias=True))
+                                 nn.Conv1d(16, dim, kernal_size=1, stride=1, bias=True))
         
     def forward(self, x, mask=None, pos_embed=None, vote_embed=None):
         B_, N, C = x.shape
@@ -77,7 +77,7 @@ class WindowAttention(nn.Module):
         k += vote_embed
         v += vote_embed
 
-        attn = torch.einsum('bhnd,bhmd->bhnm', q, k) * self.scale // torch.maixmum(torch.norm(q, dim=-1, keepdim=True)*torch.norm(k, dim=-1, keepdim=True).transpose(-2, -1), torch.tensor(1e-6))
+        attn = torch.einsum('bhnd,bhmd->bhnm', q, k) / torch.maixmum(torch.norm(q, dim=-1, keepdim=True)*torch.norm(k, dim=-1, keepdim=True).transpose(-2, -1), torch.tensor(1e-6, device=q.device, dtype=q.dtype))
         attn = attn / self.tau.clamp(min=0.01)
 
         pos_embed = pos_embed.permute(0, 2, 1).contiguous()
@@ -87,7 +87,7 @@ class WindowAttention(nn.Module):
 
         if mask is not None:
             nW = mask.shape[0]
-            attn = attn.view(B // nW, nW, self.num_heads, N, N) + mask.unsqueeze(1).unsqueeze(0)
+            attn = attn.view(B_ // nW, nW, self.num_heads, N, N) + mask.unsqueeze(1).unsqueeze(0)
             attn = attn.view(-1, self.num_heads, N, N)
             attn = self.softmax(attn)
         else:
@@ -95,7 +95,7 @@ class WindowAttention(nn.Module):
         
         attn = self.attn_drop(attn)
         
-        x = (attn @ (v + vote_embed)).transpose(1, 2).reshape(B, N, C)
+        x = (attn @ v).transpose(1, 2).reshape(B, N, C)
         x = self.proj(x)
         x = self.proj_drop(x)
         
